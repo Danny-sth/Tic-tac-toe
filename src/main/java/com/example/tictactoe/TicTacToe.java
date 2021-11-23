@@ -32,7 +32,7 @@ public class TicTacToe {
                 break;
             }
             turnAI();
-            printable();
+            printGameField();
             if (checkWin(ZERO)) {
                 System.out.println("AI Win!");
                 break;
@@ -43,7 +43,7 @@ public class TicTacToe {
             }
         }
         System.out.println("Game Over.");
-        printable();
+        printGameField();
     }
 
     void initTable() {
@@ -60,6 +60,12 @@ public class TicTacToe {
             y = scanner.nextInt() - 1;
         } while (!isCellValid(x, y));
         gameField[y][x] = CROSS;
+    }
+
+    boolean isCellValid(int x, int y) {
+        if (x < 0 || y < 0 || x >= 3 || y >= 3)
+            return false;
+        return gameField[y][x] == EMPTY_CELL;
     }
 
     boolean checkWin(char checkingSymbol) {
@@ -85,13 +91,16 @@ public class TicTacToe {
         return true;
     }
 
-    boolean isCellValid(int x, int y) {
-        if (x < 0 || y < 0 || x >= 3 || y >= 3)
-            return false;
-        return gameField[y][x] == EMPTY_CELL;
+    void turnAI() {
+        int x, y;
+        do {
+            x = random.nextInt(3);
+            y = random.nextInt(3);
+        } while (!isCellValid(x, y));
+        gameField[y][x] = ZERO;
     }
 
-    void printTable() {
+    void printGameField() {
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++)
                 System.out.print(gameField[row][col] + " ");
