@@ -5,8 +5,6 @@ import java.util.Scanner;
 
 public class TicTacToe {
 
-    final char CROSS = 'X';
-    final char ZERO = '0';
     final char EMPTY_CELL = ' ';
     String playerName;
     char playerCharacter;
@@ -123,12 +121,30 @@ public class TicTacToe {
     }
 
     void turnAI() {
+        if (aiLevel == 1) {
+            turnLvl1();
+        } else if (aiLevel == 2) {
+            turnLvl2();
+        }
+    }
+
+    private void turnLvl1() {
         int x, y;
         do {
             x = random.nextInt(3);
             y = random.nextInt(3);
         } while (!isCellValid(x, y));
         gameField[y][x] = aiCharacter;
+    }
+
+    private void turnLvl2() {
+        int x, y;
+        for (int i = 0; i < 3; i++){
+            if (gameField[i][0]
+            ) {
+            }
+        }
+
     }
 
     void printGameField() {
